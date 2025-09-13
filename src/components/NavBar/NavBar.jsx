@@ -21,7 +21,7 @@ const Navbar = () => {
       {/* New navbar */}
       <header className='bg-black-card'>
 
-        <div className=' text-green-500 text-base sm:text-2xl'>Daniel-LA | Developer</div>
+        <div className=' text-color text-base sm:text-2xl'>Daniel-LA | Developer</div>
 
         <ul className={`navbar flex items-center ${menuAbierto ? 'open' : ''}`}>
           <li>
@@ -84,7 +84,7 @@ const Navbar = () => {
             <div>
               <button
                 type="button"
-                className="inline-flex justify-center w-full rounded-md hover:text-green-500 text-white shadow-sm px-4 py-1 dropdown-bg text-sm font-medium  focus:outline-none  active:text-gray-800 transition ease-in-out duration-150"
+                className="inline-flex justify-center w-full rounded-md hover:text-color text-white shadow-sm px-4 py-1 dropdown-bg text-sm font-medium  focus:outline-none  active:text-gray-800 transition ease-in-out duration-150"
                 onClick={toggleDrop}
               >
                 Language
@@ -107,7 +107,7 @@ const Navbar = () => {
                   onClick={() => {
                     menuAbierto && setMenuAbierto(false);
                     isDropOpen && setIsDropOpen(false)}}
-                  className="flex justify-between  px-4 py-4 rounded-md text-center text-sm text-white hover:text-green-500 transition-transform transform hover:scale-110 " role="menuitem" tabIndex="-1" id="menu-item-0">
+                  className="flex justify-between  px-4 py-4 rounded-md text-center text-sm text-white hover:text-color transition-transform transform hover:scale-110 " role="menuitem" tabIndex="-1" id="menu-item-0">
                   <span >Spanish</span>
                   <img src="/images/spain.png" alt="spain" width={20} />
                 </button>
@@ -115,7 +115,7 @@ const Navbar = () => {
                   onClick={() => {
                     menuAbierto && setMenuAbierto(false);
                     isDropOpen && setIsDropOpen(false)}}
-                  className="flex justify-between  px-4 py-4 rounded-md text-center text-sm text-white hover:text-green-500 transition-transform transform hover:scale-110" role="menuitem" tabIndex="-1" id="menu-item-1">
+                  className="flex justify-between  px-4 py-4 rounded-md text-center text-sm text-white hover:text-color transition-transform transform hover:scale-110" role="menuitem" tabIndex="-1" id="menu-item-1">
                   <span>English</span>
                   <img src="/images/usa.png" alt="usa" width={20} />
                 </button>
@@ -123,7 +123,7 @@ const Navbar = () => {
                   onClick={() => {
                     menuAbierto && setMenuAbierto(false);
                     isDropOpen && setIsDropOpen(false)}}
-                  className="flex justify-between  px-4 py-4 rounded-md text-center text-sm text-white hover:text-green-500 transition-transform transform hover:scale-110" role="menuitem" tabIndex="-1" id="menu-item-2">
+                  className="flex justify-between  px-4 py-4 rounded-md text-center text-sm text-white hover:text-color transition-transform transform hover:scale-110" role="menuitem" tabIndex="-1" id="menu-item-2">
                   <span>French</span>
                   <img src="/images/france.png" alt="france" width={20} />
                 </button>

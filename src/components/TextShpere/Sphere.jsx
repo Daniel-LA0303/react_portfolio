@@ -22,7 +22,7 @@ const Sphere = () => {
   return (
     <div className="w-full bg-black-card">
       <div className="w-full px-5 sm:w-5/6 md:w-10/12 mt-20 m-auto index-bg">
-        <p className='text-green-500 text-3xl sm:text-5xl text-center py-10'>Skills</p>
+        <p className='text-color text-3xl sm:text-5xl text-center py-10'>Skills</p>
         <div className="container-sphere m-sphere-auto">
           <IconCloud
             key={v4()}

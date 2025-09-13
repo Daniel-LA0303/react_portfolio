@@ -13,7 +13,7 @@ const Contact = () => {
   return (
     <section className="w-full px-5 sm:w-5/6 md:w-10/12 m-auto index-bg" id='contact'>
       <div className="py-8 lg:py-16 px-4 mx-auto ">
-          <h2 className="text-green-500 text-3xl sm:text-5xl mb-4">Contact me</h2>
+          <h2 className="text-color text-3xl sm:text-5xl mb-4">Contact me</h2>
           <p className="mb-8 lg:mb-16 font-light  text-gray-500 dark:text-gray-400 sm:text-xl">Contact me through the following media. </p>
 
           <div className=" ">

@@ -39,7 +39,7 @@ const ParticlesBG = () => {
                     },
                   },
                   size: {
-                    value: 1,
+                    value: 4,
                   },
                   line_linked: {
                     enable: false,

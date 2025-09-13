@@ -36,7 +36,7 @@ const Button = () => {
     <div className="flex justify-center">
     <button 
       disabled={isButtonDisabled}
-      onClick={handleClick} className={` bg-green-500 hover:bg-green-400 w-40 ${isLaunching ? 'launching' : ''}`}>
+      onClick={handleClick} className={` bg-color hover:bg-blue-600 w-40 ${isLaunching ? 'launching' : ''}`}>
       <img className="rocket" src={rocket} alt="Rocket" />
       <span className=" text-sm text-center w-full">Download CV</span>
       <img className="smoke" src={smoke} alt="Smoke" />

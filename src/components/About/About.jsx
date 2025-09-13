@@ -31,7 +31,7 @@ const About = () => {
       <div className='w-full sm:w-5/6 md:w-10/12 m-auto index-bg h-screen flex justify-center items-center'>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
           <div className='pt-10'>
-            <p className='text-green-500 text-2xl md:text-3xl mb-10'>I'm Luis Alberto</p>
+            <p className='text-color text-2xl md:text-3xl mb-10'>I'm Luis Alberto</p>
             <span className=' text-xl md:text-3xl lg:text-5xl' ref={typedRef} />
             <div className="my-10">
               <Button />
@@ -50,11 +50,11 @@ const About = () => {
         <div className='w-full px-5 sm:w-5/6 md:w-10/12 m-auto index-bg'>
           <div className='grid grid-cols-1' id="about-me">
             <div className=' w-full md:w-4/6'>
-              <p className=' text-xs sm:text-lg mb-5'>Introduction</p>
-              <p className='text-green-500 text-3xl sm:text-5xl mb-4'>About Me</p>
-              <p className=' text-sm sm:text-xl'>I am Mr. Luis Alberto, I am about to graduate with a degree in <span className='text-green-500 font-bold text-base sm:text-lg'>Computer Science Engineering.</span> Currently,
-                I am in my final semester of the program. I have experience as a backend programmer in <span className='text-green-500 font-bold text-base sm:text-lg'>Java and Node.js. </span>
-                Additionally, I am working on freelance projects involving microservices using <span className='text-green-500 font-bold text-base sm:text-lg'>Spring Boot</span>, and I have experience in <span className='text-green-500 font-bold text-lg'>cloud computing.</span>
+              {/* <p className=' text-xs sm:text-lg mb-5'>Introduction</p> */}
+              <p className='text-color text-3xl sm:text-5xl mb-4'>About Me</p>
+              <p className=' text-sm sm:text-xl'>I am Mr. Luis Alberto, I am about to graduate with a degree in <span className='text-color font-bold text-base sm:text-lg'>Computer Science Engineering.</span> Currently,
+                I am in my final semester of the program. I have experience as a backend programmer in <span className='text-color font-bold text-base sm:text-lg'>Java and Node.js. </span>
+                Additionally, I am working on freelance projects involving microservices using <span className='text-color font-bold text-base sm:text-lg'>Spring Boot</span>, and I have experience in <span className='text-color font-bold text-lg'>cloud computing.</span>
               </p>
             </div>
             <div className='w-full'>

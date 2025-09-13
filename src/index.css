@@ -11,7 +11,7 @@
 
 
 ::-webkit-scrollbar-thumb {
-  background-color: #16C55EFF;
+  background-color: #3B82F6;
   border-radius: 10px;
 }
 
@@ -20,7 +20,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Roboto';
 }
 
 * {
@@ -83,7 +83,7 @@ header{
 }
 
 .navbar a:hover{
-  color: #16C55EFF;
+  color: #3B82F6;
 }
 
 .main{
@@ -117,7 +117,7 @@ header{
 }
 
 .navbar a.active{
-  color: #16C55EFF;
+  color: #3B82F6;
 }
 
 .menu-icon{
@@ -271,7 +271,7 @@ header{
 .timeline-dot{
 	height: 16px;
 	width: 16px;
-	background-color: #16C55EFF;
+	background-color: #3B82F6;
 	position: absolute;
 	left: calc(50% - 8px);
 	border-radius: 50%;
@@ -279,7 +279,7 @@ header{
 }
 .timeline-date{
 	font-size: 18px;
-	color: #16C55EFF;
+	color: #3B82F6;
 	margin:6px 0 15px;
 }
 .timeline-content{
@@ -317,4 +317,14 @@ header{
 	.timeline-dot{
 		left:0;
 	}
+}
+
+
+/* text color */
+.text-color{
+  color: #3B82F6;
+}
+
+.bg-color{
+  background-color: #3B82F6;
 }

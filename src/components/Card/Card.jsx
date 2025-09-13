@@ -24,12 +24,12 @@ const Card = ({ project }) => {
                         </div>
                     </div>
                     <div class="absolute top-0 h-full z-50 w-full flex items-center justify-center transition-all duration-300">
-        <p className="text-green-500 font-bold text-3xl  group-hover:opacity-0">Hover me</p>
+        <p className="text-color font-bold text-3xl  group-hover:opacity-0">Hover me</p>
       </div>
                 </div>
                 <h2 class="my-6 text-sm md:text-xl capitalize">{project.name}</h2>
                 {project.linksRepo.map((link, index) => (
-                    <button className="bg-green-500 w-10/12 flex justify-between  mb-2 hover:bg-green-700 py-2 px-3 rounded transition duration-300 ease-in-out text-repo">
+                    <button className="bg-color w-10/12 flex justify-between  mb-2 hover:bg-green-700 py-2 px-3 rounded transition duration-300 ease-in-out text-repo">
                       <a
                         href={link.link}
                         target="_blank"
