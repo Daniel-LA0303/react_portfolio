@@ -81,7 +81,7 @@ const Navbar = () => {
             >Contact</Link>
           </li>
           <li className="relative inline-block text-left">
-            <div>
+            {/* <div>
               <button
                 type="button"
                 className="inline-flex justify-center w-full rounded-md hover:text-color text-white shadow-sm px-4 py-1 dropdown-bg text-sm font-medium  focus:outline-none  active:text-gray-800 transition ease-in-out duration-150"
@@ -92,7 +92,7 @@ const Navbar = () => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
-            </div>
+            </div> */}
 
             <div
               className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition duration-300 ${isDropOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'

@@ -1,30 +1,33 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Card from '../Card/Card';
+import CardFullStackBackend from '../Card/CardFullStackBackend';
 
 
 
-const SliderSlick = ({data, speed, autoplay}) => {
+const SliderSlick = ({ data, speed, autoplay }) => {
 
-  let settings = {
+  const settings = {
     dots: true,
     infinite: true,
-    speed: speed,
-    slidesToShow: 4,
-    arrows: false,
+    speed: speed || 600,
+    slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
     autoplay: true,
-    autoplaySpeed: autoplay,
+    autoplaySpeed: autoplay || 4000,
     pauseOnHover: true,
-    className: 'slides',
+    adaptiveHeight: true,
+    swipeToSlide: true,
+    cssEase: "ease-in-out",
+    lazyLoad: "ondemand",
+    className: "slides",
     responsive: [
       {
-        breakpoint: 1500,
+        breakpoint: 1536,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           dots: true,
         },
       },
@@ -32,15 +35,22 @@ const SliderSlick = ({data, speed, autoplay}) => {
         breakpoint: 1200,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 992,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
         },
       },
     ],
@@ -49,13 +59,16 @@ const SliderSlick = ({data, speed, autoplay}) => {
   return (
     <div>
       <Slider {...settings}>
-        
+
         {data.map((project, index) => (
-            <div className="slide">
-              <Card project={project} key={index} />
-              </div>
-            ))}
-        
+          <div className="slide">
+            <CardFullStackBackend
+              project={project}
+              key={index}
+            />
+          </div>
+        ))}
+
       </Slider>
     </div>
   );

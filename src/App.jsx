@@ -1,5 +1,4 @@
 import Home from './Pages/Home/Home'
-import ParticlesBG from './components/ParticlesBG'
 
 function App() {
 
@@ -8,7 +7,6 @@ function App() {
     <div>
       
       <Home />
-      {/* <ParticlesBG /> */}
     </div>
   )
 }

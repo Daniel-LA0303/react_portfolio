@@ -1,85 +1,88 @@
 
 import { v4 } from "uuid";
-const projectsAPI = [
+
+export const projectsAPI = [
     {
         id: v4(),
-        name: 'Crud MCV with MySQL',
-        description: 'The project uses the MVC pattern and with the help of Spring, JPA and Thymeleaf we can do CRUD operations',
+        name: 'App MCSV E-COMMERCE',
+        description: 'E-commerce microservices architecture built with Spring Boot and Docker containers, featuring services for authentication, orders, and products. The system uses Grafana, Prometheus, and Zipkin for monitoring, metrics, and distributed tracing. It integrates with Amazon Cognito for authentication and AWS S3/Fargate for scalable deployment and storage.',
         linksRepo: [
             {
                 id: v4(),
                 type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/todos_app_SB'
+                link: 'https://github.com/Daniel-LA0303/pp-011-mcsv-ecommerce/tree/develop'
             }
         ],
-        img: '/images/project_backend1.png',
+        img: '/images/backend1.png',
         skills: [
             {
                 id: v4(),
                 name: 'Spring Boot',
                 color: '#6DB33F'
             },
+
             {
                 id: v4(),
-                name: 'Thymeleaf',
-                color: '#005744'
+                name: 'AWS',
+                color: '#FF9900'
             },
             {
                 id: v4(),
-                name: 'MySQL',
-                color: '#4479A1'
+                name: 'Docker',
+                color: '#2496ED'
+            },
+            {
+                id: v4(),
+                name: 'Grafana',
+                color: '#F46800'
+            },
+            {
+                id: v4(),
+                name: 'Prometheus',
+                color: '#E6522C'
+            },
+            {
+                id: v4(),
+                name: 'Zipkin',
+                color: '#FF006D'
             }
         ]
     },
     {
         id: 2,
-        name: 'Crud MCV with MongoDB',
-        description: 'The project uses the MVC pattern and with the help of Spring, JPA and Thymeleaf we can do CRUD operations \n',
+        name: 'Project Management in JavaEE',
+        description: `Task and project management system built with JavaEE, JDBC, CDI and MYSQL deployed on Apache Tomcat.
+        The application allows user registration, project creation, task management, and assignment of tasks to users. 
+        Project authors can invite other users to collaborate, ensuring effective team coordination and task tracking.
+        In the frontend we have views JSP and use JQuery to management tasks or actions like login, register etc.`,
         linksRepo: [
             {
                 id: v4(),
                 type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/todos_app_SB_mysql'
+                link: 'https://github.com/Daniel-LA0303/pp-008-javaee-pm'
             }
         ],
-        img: '/images/project_backend2.png',
+        img: '/images/backend2.png',
         skills: [
             {
                 id: v4(),
-                name: 'Spring Boot',
-                color: '#6DB33F'
+                name: 'JavaEE',
+                color: '#5382A1'
             },
             {
                 id: v4(),
-                name: 'Thymeleaf',
-                color: '#005744'
+                name: 'JDBC',
+                color: '#C5C5C5'
             },
             {
                 id: v4(),
-                name: 'MongoDB',
-                color: '#47A248'
+                name: 'CDI',
+                color: '#FF5722'
             },
-
-        ]
-
-    },
-    {
-        id: v4(),
-        name: 'API Rest Spring Boot + MySQL',
-        description: 'It is a simple rest api built under Spring Boot layers and with MySQL database. The documentation was implemented with Swagger.',
-        linksRepo: [
             {
                 id: v4(),
-                type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/sb_apirest_mysql'
-            }
-        ],
-        img: '/images/project_backendAPI2.png',
-        skills: [
-            {
-                id: v4(),
-                name: 'Spring Boot',
-                color: '#6DB33F'
+                name: 'Apache Tomcat',
+                color: '#F8DC75'
             },
             {
                 id: v4(),
@@ -88,193 +91,37 @@ const projectsAPI = [
             },
             {
                 id: v4(),
-                name: 'JPA',
-                color: '#6C757D'
+                name: 'HTML/CSS',
+                color: '#E34F26'
             },
             {
                 id: v4(),
-                name: 'Validation',
-                color: '#6C757D'
+                name: 'JSP / SERVLETS',
+                color: '#E34F26'
             }
         ]
+
+
     },
     {
         id: v4(),
-        name: 'API Rest Spring Boot + MongoDB',
-        description: 'It is a simple rest api built under Spring Boot layers and with MongoDB database. The documentation was implemented with Swagger.',
+        name: 'CRM - MERN',
+        description: `CRM system built with the MERN stack and Apollo GraphQL, using MongoDB as the database. 
+        The application allows creating and managing clients, products, and orders. It also includes dashboards with charts to visualize 
+        top-selling products and best-performing clients, enabling data-driven business decisions.`,
         linksRepo: [
             {
                 id: v4(),
-                type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/todos_app_SB_mysql'
+                type: 'FullStack',
+                link: 'https://github.com/Daniel-LA0303/project_crm_graphql'
             }
         ],
-        img: '/images/project_backendAPI3.png',
+        img: '/images/backend3.png',
         skills: [
-            {
-                id: v4(),
-                name: 'Spring Boot',
-                color: '#6DB33F'
-            },
             {
                 id: v4(),
                 name: 'MongoDB',
                 color: '#47A248'
-            },
-            {
-                id: v4(),
-                name: 'Validation',
-                color: '#6C757D'
-            }
-        ]
-
-    },
-    {
-        id: v4(),
-        name: 'API Rest NodeJS + MySQL',
-        description: 'Implementation of rest api with NodeJS and MySQL and documented with Swagger. In this one I choose to use querys directly to the database.',
-        linksRepo: [
-            {
-                id: v4(),
-                type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/blog_backend'
-            },
-        ],
-        img: '/images/project_backendAPI4.png',
-        skills: [
-            {
-                id: v4(),
-                name: 'Node.js',
-                color: '#8CC84B'
-            },
-            {
-                id: v4(),
-                name: 'MySQL',
-                color: '#4479A1'
-            },
-            {
-                id: v4(),
-                name: 'Validation',
-                color: '#6C757D'
-            }
-        ]
-    },
-    {
-        id: v4(),
-        name: 'API Rest NodeJS + MongoDB',
-        description: 'Using NodeJS and MongoDB a rest api was implemented with the help of orm mongoose and documented with Swagger.',
-        linksRepo: [
-            {
-                id: v4(),
-                type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/blog_backend'
-            },
-        ],
-        img: '/images/project_backendAPI5.png',
-        skills: [
-            {
-                id: v4(),
-                name: 'Node.js',
-                color: '#8CC84B'
-            },
-            {
-                id: v4(),
-                name: 'MongoDB',
-                color: '#47A248'
-            },
-            {
-                id: v4(),
-                name: 'Validation',
-                color: '#6C757D'
-            }
-        ]
-    },
-
-]
-
-const projectsFullstack = [
-    {
-        id: v4(),
-        name: 'Project App Users',
-        description: 'This is a project developed with Spring Boot and React, you can create, update and delete user logs, as long as you have the admin role as the project handles authentication with JWT and Spring Security, in the frontend we use Hooks and Context API to manage the state of the application.',
-        linksRepo: [
-            {
-                id: v4(),
-                type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/backend_users_SR'
-            },
-            {
-                id: v4(),
-                type: 'Frontend',
-                link: 'https://github.com/Daniel-LA0303/frontend_users_SR'
-            }
-        ],
-        img: '/images/fullstack1.png',
-        skills: [
-            {
-                id: v4(),
-                name: 'React',
-                color: '#61DBFB'
-            },
-            {
-                id: v4(),
-                name: 'JavaScript',
-                color: '#F0DB4F'
-            },
-            {
-                id: v4(),
-                name: 'Spring Boot',
-                color: '#6DB33F'
-            },
-            {
-                id: v4(),
-                name: 'JWT',
-                color: '#000000'
-            },
-            {
-                id: v4(),
-                name: 'Spring Security',
-                color: '#6DB33F'
-            },
-            {
-                id: v4(),
-                name: 'MySQL',
-                color: '#4479A1'
-            }
-        ]
-    },
-    {
-        id: v4(),
-        name: 'Project Inventory and Clients',
-        description: 'This project handles the Graphql architecture with a server and an Apollo client, the project was made with the MERN stack and handles authentication with JWT, the project is a CRM where you can create, update and delete clients, products and orders, we also use a filtering of better customers and sellers.',
-        linksRepo: [
-            {
-                id: v4(),
-                type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/crm_app_mern_graphql/tree/main/backend'
-            },
-            {
-                id: v4(),
-                type: 'Frontend',
-                link: 'https://github.com/Daniel-LA0303/crm_app_mern_graphql/tree/main/fontend'
-            }
-        ],
-        img: '/images/fullstack2.png',
-        skills: [
-            {
-                id: v4(),
-                name: 'React',
-                color: '#61DBFB'
-            },
-            {
-                id: v4(),
-                name: 'JavaScript',
-                color: '#F0DB4F'
-            },
-            {
-                id: v4(),
-                name: 'Apollo',
-                color: '#fff'
             },
             {
                 id: v4(),
@@ -283,41 +130,49 @@ const projectsFullstack = [
             },
             {
                 id: v4(),
-                name: 'Node.js',
-                color: '#8CC84B'
+                name: 'React',
+                color: '#61DAFB'
             },
             {
                 id: v4(),
-                name: 'MongoDB',
-                color: '#47A248'
+                name: 'Node.js',
+                color: '#339933'
+            },
+            {
+                id: v4(),
+                name: 'Apollo GraphQL',
+                color: '#311C87'
+            },
+            {
+                id: v4(),
+                name: 'JavaScript',
+                color: '#F7DF1E'
             }
-
         ]
     },
     {
         id: v4(),
-        name: 'Blog system with Stack MERN',
-        description: 'The Blog System project was implemented under a monolithic architecture, uses advanced tools in the frontend such as Redux, React Router Dom and CSS libraries, authentication works with JWT, in addition the project simulates a blog that has functions such as like, follow users, comment posts, advanced filtering etc.',
+        name: 'My Blog',
+        description: 'Social blogging platform built with the MERN stack, featuring user authentication, blog creation, editing, and publishing. Users can like, save, and comment on blogs, follow other users and categories, and reply to comments. The platform includes a smart dashboard for filtering content, profile management with photo upload, real-time chat via Socket.io, and integration with external services like Cloudinary and Mailtrap. The application is deployed on AWS and uses Material-UI for a responsive frontend.',
         linksRepo: [
             {
                 id: v4(),
-                type: 'Backend',
-                link: 'https://github.com/Daniel-LA0303/blog_backend'
+                type: 'Frontend',
+                link: 'https://github.com/Daniel-LA0303/react_blog_frontend'
             },
             {
                 id: v4(),
-                type: 'Frontend',
-                link: 'https://github.com/Daniel-LA0303/blog_frontend'
-            }
+                type: 'Backend',
+                link: 'https://github.com/Daniel-LA0303/node_blog_backend'
+            },
         ],
-        img: '/images/fullstack3.png',
+        img: '/images/backend4.png',
         skills: [
             {
                 id: v4(),
-                name: 'React',
-                color: '#61DBFB'
+                name: 'MongoDB',
+                color: '#47A248'
             },
-
             {
                 id: v4(),
                 name: 'Express.js',
@@ -325,23 +180,46 @@ const projectsFullstack = [
             },
             {
                 id: v4(),
-                name: 'Node.js',
-                color: '#8CC84B'
+                name: 'React',
+                color: '#61DAFB'
             },
             {
                 id: v4(),
-                name: 'MongoDB',
-                color: '#47A248'
+                name: 'Node.js',
+                color: '#339933'
+            },
+            {
+                id: v4(),
+                name: 'Socket.io',
+                color: '#010101'
+            },
+            {
+                id: v4(),
+                name: 'Material-UI',
+                color: '#0081CB'
+            },
+            {
+                id: v4(),
+                name: 'Cloudinary',
+                color: '#DE6A42'
+            },
+            {
+                id: v4(),
+                name: 'Mailtrap',
+                color: '#FF5F00'
+            },
+            {
+                id: v4(),
+                name: 'AWS',
+                color: '#FF9900'
+            },
+            {
+                id: v4(),
+                name: 'JavaScript',
+                color: '#F7DF1E'
             }
         ]
+
+
     },
-
 ]
-
-
-const projectsMVC = [
-
-]
-
-
-export {projectsAPI, projectsFullstack, projectsMVC};

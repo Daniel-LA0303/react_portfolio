@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
-const projects = [
+
+export const projects = [
     {
         id: v4(),
         name: 'App Movies',
@@ -43,8 +44,8 @@ const projects = [
     },
     {
         id: v4(),
-        name: 'App Restaurant',
-        description: 'The project simulates a dashboard of a coffee shop, the adminitrador can execute CRUD actions on products and orders.',
+        name: 'CRM - MERN',
+        description: 'CRM system built with the MERN stack and Apollo GraphQL, using MongoDB as the database. The application allows creating and managing clients, products, and orders. It also includes dashboards with charts to visualize top-selling products and best-performing clients, enabling data-driven business decisions.',
         linksRepo: [
             {
                 id: v4(),
@@ -61,25 +62,41 @@ const projects = [
         skills: [
             {
                 id: v4(),
+                name: 'MongoDB',
+                color: '#47A248'
+            },
+            {
+                id: v4(),
+                name: 'Express.js',
+                color: '#000000'
+            },
+            {
+                id: v4(),
                 name: 'React',
-                color: '#61DBFB'
+                color: '#61DAFB'
+            },
+            {
+                id: v4(),
+                name: 'Node.js',
+                color: '#339933'
+            },
+            {
+                id: v4(),
+                name: 'Apollo GraphQL',
+                color: '#311C87'
+            },
+            {
+                id: v4(),
+                name: 'Charts.js',
+                color: '#FF6384'
             },
             {
                 id: v4(),
                 name: 'JavaScript',
-                color: '#F0DB4F'
-            },
-            {
-                id: v4(),
-                name: 'HTML',
-                color: '#E34F26'
-            },
-            {
-                id: v4(),
-                name: 'CSS',
-                color: '#2965F1'
+                color: '#F7DF1E'
             }
         ]
+
     },
     {
         id: v4(),
@@ -283,5 +300,3 @@ const projects = [
     },
 
 ]
-
-export default projects;

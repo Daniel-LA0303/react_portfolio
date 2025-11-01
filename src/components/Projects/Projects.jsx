@@ -1,8 +1,11 @@
 import React from "react";
-import projects from "../../helpers/projects";
-import { projectsFullstack, projectsAPI, projectsMVC } from "../../helpers/projectsAPI";
-import Card from "../Card/Card";
+
 import SliderSlick from "../slider/SliderSlick";
+import CardFullStackBackend from "../Card/CardFullStackBackend";
+// import CardFrontend from "../Card/CardFrontend.js";
+
+import { projectsAPI } from "../../helpers/projectsAPI";
+import CollageGrid from "../collage/CollageGrid";
 
 const Projects = () => {
   return (
@@ -18,24 +21,13 @@ const Projects = () => {
       </div>
 
       <div className="text-white  flex items-center justify-center ">
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4">     
+          {/* <CardFrontend /> */}
 
-          <p className="text-color text-xl sm:text-3xl mb-4 my-10">Projects FullStack</p>
-
-          <div className="hidden sm:grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 gap-4 mb-10">
-            {projectsFullstack.map((project, index) => (
-              <Card project={project} key={index} />
-            ))}
-          </div>
-
-          <div className=" block sm:hidden">
-            <SliderSlick data={projectsFullstack} speed={600} autoplay={3000}/>
-          </div>
-
-          <p className="text-color text-xl sm:text-3xl mb-4 my-10">Projects Backend</p>
-          <SliderSlick data={projectsAPI} speed={600}  autoplay={4000}/>
-          <p className="text-color text-3xl mb-4 my-10">Projects Frontend</p>
-          <SliderSlick data={projects} speed={600} autoplay={5000}/>
+          <p className="text-color text-xl sm:text-3xl mb-4 my-10">Complete Proyects</p>
+          <SliderSlick data={projectsAPI} speed={1000}  autoplay={6000}/>
+          <p className="text-color text-3xl mb-4 my-10">Frontend Projects</p>
+          <CollageGrid />
         </div>
       </div>
     </div>

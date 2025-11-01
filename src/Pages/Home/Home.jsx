@@ -20,10 +20,9 @@ const Home = () => {
             <Projects />
             <Shpere />
             <Contact />
-            
             <ContactFixed />
         </div>
-        <Footer />
+        {/* <Footer /> */}
     </>
 
   )
