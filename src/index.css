@@ -397,3 +397,31 @@ header {
 .animate-float-minor-delay-2 {
   animation: float-minor 4.5s ease-in-out infinite 1s;
 }
+
+
+.cg-grid-5 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 200px 320px;
+  grid-template-areas:
+    "a b c"
+    "d d e";
+  gap: 12px;
+}
+.cg-area-a { grid-area: a; }
+.cg-area-b { grid-area: b; }
+.cg-area-c { grid-area: c; }
+.cg-area-d { grid-area: d; }
+.cg-area-e { grid-area: e; }
+
+@media (max-width: 768px) {
+  .cg-grid-5 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "a b"
+      "c d"
+      "e e";
+  }
+  .cg-grid-5 .cg-item { min-height: 200px; }
+}
