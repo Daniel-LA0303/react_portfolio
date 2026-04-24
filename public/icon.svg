@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="8" fill="#000000"/>
+  <path d="M7 8 L4 8 L4 24 L7 24" stroke="#2997ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M25 8 L28 8 L28 24 L25 24" stroke="#2997ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="10" y="22" font-family="Arial, sans-serif" font-weight="900" font-size="14" fill="#ffffff" letter-spacing="-1">D</text>
+  <circle cx="21" cy="21" r="2.2" fill="#2997ff"/>
+</svg>

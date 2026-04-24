@@ -10,213 +10,10 @@ import allIcons from "simple-icons";
 import { v4 } from "uuid";
 import { IconCloud } from "react-icon-cloud";
 import { projectsAPI } from "../helpers/projectsAPI";
+import FeaturedProjects from "./FeaturedProjects";
+import AIAgentsProject from "./AIAgentsProject";
+import EcommerceProject from "./EcommerceProject";
 
-// ─── GLOBAL STYLES ───────────────────────────────────────────────────────────
-const GlobalStyles = () => (
-  <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #000;
-      --bg-surface: #0a0a0a;
-      --bg-card: #111;
-      --bg-card-hover: #161616;
-      --border: rgba(255,255,255,0.08);
-      --border-hover: rgba(255,255,255,0.18);
-      --accent: #2997ff;
-      --accent-soft: rgba(41,151,255,0.12);
-      --text-primary: #f5f5f7;
-      --text-secondary: #a1a1a6;
-      --text-tertiary: #6e6e73;
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-      --radius: 18px;
-      --radius-sm: 12px;
-      --nav-h: 60px;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg); color: var(--text-primary);
-      font-family: var(--font-body); font-size: 16px;
-      line-height: 1.7; -webkit-font-smoothing: antialiased;
-    }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 99px; }
-    ::selection { background: rgba(41,151,255,0.25); color: #fff; }
-
-    /* ── Navbar ── */
-    .nav-root {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-      height: var(--nav-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 32px;
-      background: rgba(0,0,0,0.72);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 0.5px solid var(--border);
-    }
-    .nav-logo { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-link-item { font-size: 13px; color: var(--text-secondary); cursor: pointer; transition: color 0.2s; text-decoration: none; }
-    .nav-link-item:hover { color: var(--text-primary); }
-    .nav-cta { font-size: 13px; font-weight: 500; padding: 7px 18px; border-radius: 99px; background: var(--accent); color: #fff; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
-    .nav-cta:hover { opacity: 0.85; transform: scale(1.03); }
-    .nav-mobile-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 18px; cursor: pointer; }
-    .nav-mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 32px; z-index: 998; }
-    .nav-mobile-menu.open { display: flex; }
-    .nav-mobile-link { font-family: var(--font-display); font-size: 32px; font-weight: 600; color: var(--text-primary); cursor: pointer; text-decoration: none; transition: color 0.2s; }
-    .nav-mobile-link:hover { color: var(--accent); }
-    @media (max-width: 768px) { .nav-links, .nav-cta { display: none; } .nav-mobile-btn { display: block; } }
-
-    /* ── Hero ── */
-    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 24px; padding-top: var(--nav-h); position: relative; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(41,151,255,0.12) 0%, transparent 70%); pointer-events: none; }
-    .hero-grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
-    .hero-eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; z-index: 1; animation: fadeUp 0.8s ease both; }
-    .hero-title { font-family: var(--font-display); font-size: clamp(48px, 8vw, 96px); font-weight: 800; line-height: 1.0; letter-spacing: -2px; color: var(--text-primary); z-index: 1; animation: fadeUp 0.8s 0.1s ease both; }
-    .hero-title .accent { color: var(--accent); }
-    .hero-typed { font-size: clamp(20px, 3vw, 32px); font-weight: 500; color: var(--text-primary); margin-top: 12px; z-index: 1; animation: fadeUp 0.8s 0.2s ease both; min-height: 44px; }
-    .hero-typed .cursor { color: var(--accent); animation: blink 1s step-end infinite; }
-    .hero-subtitle { font-size: clamp(15px, 2vw, 19px); font-weight: 300; color: var(--text-secondary); max-width: 520px; margin: 20px auto 0; z-index: 1; animation: fadeUp 0.8s 0.25s ease both; }
-    .hero-actions { display: flex; gap: 16px; margin-top: 40px; z-index: 1; animation: fadeUp 0.8s 0.35s ease both; flex-wrap: wrap; justify-content: center; }
-    .btn-primary { padding: 14px 32px; border-radius: 99px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 500; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s; display: flex; align-items: center; gap: 8px; text-decoration: none; }
-    .btn-primary:hover { opacity: 0.85; transform: scale(1.03); }
-    .btn-ghost { padding: 14px 32px; border-radius: 99px; background: transparent; color: var(--text-primary); font-size: 15px; font-weight: 500; border: 0.5px solid var(--border-hover); cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; }
-    .btn-ghost:hover { background: rgba(255,255,255,0.06); transform: scale(1.03); }
-    .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-tertiary); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; z-index: 1; animation: fadeIn 1s 1s ease both; }
-    .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-tertiary), transparent); animation: scrollLine 2s ease-in-out infinite; }
-
-    /* ── Sections ── */
-    .section { padding: 120px 24px; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block; }
-    .section-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 700; letter-spacing: -1.5px; line-height: 1.05; color: var(--text-primary); margin-bottom: 24px; }
-    .section-body { font-size: 18px; font-weight: 300; line-height: 1.8; color: var(--text-secondary); max-width: 640px; }
-
-    /* ── About ── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 80px; }
-    .about-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 24px; transition: border-color 0.3s, background 0.3s; display: flex; align-items: flex-start; gap: 16px; }
-    .about-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
-    .about-card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 17px; flex-shrink: 0; }
-    .about-card-title { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
-    .about-card-body { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
-    .about-cards-grid { display: flex; flex-direction: column; gap: 12px; }
-    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
-
-    /* ── Timeline ── */
-    .timeline { position: relative; padding-left: 32px; margin-top: 64px; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
-    .tl-item { position: relative; margin-bottom: 60px; }
-    .tl-item::before { content: ''; position: absolute; left: -37px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(41,151,255,0.2); }
-    .tl-date { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-    .tl-role { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; letter-spacing: -0.3px; }
-    .tl-project { font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px; }
-    .tl-body { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
-    .tl-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .tl-tag { font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 99px; background: rgba(41,151,255,0.08); color: var(--accent); border: 0.5px solid rgba(41,151,255,0.2); }
-    .edu-item { display: flex; align-items: flex-start; gap: 16px; padding: 24px; background: var(--bg-card); border: 0.5px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 12px; }
-    .edu-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-tertiary); flex-shrink: 0; margin-top: 8px; }
-
-    /* ── Skills ── */
-    .skills-wrap { background: var(--bg-surface); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
-
-    /* ── Slider ── */
-    .ps-root { position: relative; overflow: hidden; border-radius: 24px; background: #0a0a0a; border: 0.5px solid rgba(255,255,255,0.08); }
-    .ps-track { display: flex; transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform; }
-    .ps-slide { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; }
-    .ps-slide-img { position: relative; overflow: hidden; min-height: 420px; }
-    .ps-slide-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .ps-root:hover .ps-slide-img img { transform: scale(1.04); }
-    .ps-slide-img-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 50%, #0a0a0a 100%); }
-    .ps-slide-content { padding: 48px 40px; display: flex; flex-direction: column; justify-content: center; }
-    .ps-slide-num { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(41,151,255,0.5); margin-bottom: 16px; }
-    .ps-slide-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: #2997ff; background: rgba(41,151,255,0.1); border: 0.5px solid rgba(41,151,255,0.2); padding: 4px 12px; border-radius: 99px; margin-bottom: 20px; width: fit-content; }
-    .ps-slide-title { font-family: 'Syne', sans-serif; font-size: clamp(22px, 3vw, 36px); font-weight: 700; letter-spacing: -1px; line-height: 1.1; color: #f5f5f7; margin-bottom: 14px; }
-    .ps-slide-desc { font-size: 14px; color: #a1a1a6; line-height: 1.8; margin-bottom: 24px; font-weight: 300; }
-    .ps-slide-techs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-    .ps-tech { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.05); color: #6e6e73; border: 0.5px solid rgba(255,255,255,0.08); }
-    .ps-slide-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .ps-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 99px; background: #2997ff; color: #fff; font-size: 13px; font-weight: 500; border: none; cursor: pointer; text-decoration: none; transition: opacity 0.2s, transform 0.15s; }
-    .ps-btn-primary:hover { opacity: 0.85; transform: scale(1.03); }
-    .ps-btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 99px; background: transparent; color: #f5f5f7; font-size: 13px; font-weight: 500; border: 0.5px solid rgba(255,255,255,0.15); cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; }
-    .ps-btn-ghost:hover { background: rgba(255,255,255,0.06); transform: scale(1.03); }
-    .ps-nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-top: 0.5px solid rgba(255,255,255,0.06); }
-    .ps-dots { display: flex; gap: 8px; align-items: center; }
-    .ps-dot { height: 3px; border-radius: 99px; background: rgba(255,255,255,0.15); cursor: pointer; transition: width 0.4s cubic-bezier(0.4,0,0.2,1), background 0.3s; width: 20px; }
-    .ps-dot.active { width: 40px; background: #2997ff; }
-    .ps-arrows { display: flex; gap: 8px; }
-    .ps-arrow { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.1); color: #a1a1a6; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: background 0.2s, color 0.2s, transform 0.15s; }
-    .ps-arrow:hover { background: rgba(255,255,255,0.1); color: #f5f5f7; transform: scale(1.08); }
-    .ps-progress { position: absolute; bottom: 0; left: 0; height: 2px; background: #2997ff; border-radius: 0 99px 99px 0; pointer-events: none; }
-    @media (max-width: 768px) {
-      .ps-slide { grid-template-columns: 1fr; }
-      .ps-slide-img { min-height: 200px; }
-      .ps-slide-img-overlay { background: linear-gradient(180deg, transparent 30%, #0a0a0a 100%); }
-      .ps-slide-content { padding: 24px 20px; }
-    }
-
-    /* ── Collage ── */
-    .cg-root { margin-top: 80px; }
-    .cg-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 260px; gap: 12px; }
-    .cg-item { position: relative; overflow: hidden; border-radius: 18px; cursor: pointer; border: 0.5px solid rgba(255,255,255,0.06); }
-    .cg-item.span2 { grid-column: span 2; }
-    .cg-item.span2v { grid-row: span 2; }
-    .cg-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .cg-item:hover img { transform: scale(1.06); }
-    .cg-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%); opacity: 0.7; transition: opacity 0.3s; }
-    .cg-item:hover .cg-overlay { opacity: 1; }
-    .cg-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; transform: translateY(8px); transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94); }
-    .cg-item:hover .cg-info { transform: translateY(0); }
-    .cg-info-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-    .cg-info-desc { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; margin-bottom: 12px; opacity: 0; transform: translateY(6px); transition: opacity 0.3s 0.05s, transform 0.3s 0.05s; }
-    .cg-item:hover .cg-info-desc { opacity: 1; transform: translateY(0); }
-    .cg-info-btns { display: flex; gap: 8px; opacity: 0; transform: translateY(8px); transition: opacity 0.3s 0.1s, transform 0.3s 0.1s; }
-    .cg-item:hover .cg-info-btns { opacity: 1; transform: translateY(0); }
-    .cg-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 99px; font-size: 11px; font-weight: 500; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); text-decoration: none; cursor: pointer; border: none; transition: background 0.2s, transform 0.15s; }
-    .cg-btn-code { background: rgba(255,255,255,0.15); color: #fff; }
-    .cg-btn-demo { background: #2997ff; color: #fff; }
-    .cg-btn:hover { transform: scale(1.05); }
-    .cg-btn-code:hover { background: rgba(255,255,255,0.25); }
-    .cg-btn-demo:hover { opacity: 0.85; }
-    @media (max-width: 768px) {
-      .cg-grid { grid-template-columns: 1fr; grid-auto-rows: 240px; }
-      .cg-item.span2, .cg-item.span2v { grid-column: span 1; grid-row: span 1; }
-      .cg-info-desc, .cg-info-btns { opacity: 1; transform: none; }
-    }
-
-    /* ── Contact ── */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 64px; }
-    .contact-link { display: flex; align-items: center; gap: 16px; padding: 20px 24px; border-radius: var(--radius-sm); background: var(--bg-card); border: 0.5px solid var(--border); text-decoration: none; transition: border-color 0.25s, background 0.25s, transform 0.2s; margin-bottom: 12px; cursor: pointer; }
-    .contact-link:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateX(6px); }
-    .contact-link-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 16px; flex-shrink: 0; }
-    .contact-link-label { font-size: 13px; color: var(--text-tertiary); }
-    .contact-link-value { font-size: 15px; font-weight: 500; color: var(--text-primary); }
-    .contact-arrow { margin-left: auto; color: var(--text-tertiary); font-size: 14px; transition: transform 0.2s; }
-    .contact-link:hover .contact-arrow { transform: translateX(4px); color: var(--accent); }
-    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } }
-
-    /* ── Footer / Social ── */
-    .footer { border-top: 0.5px solid var(--border); padding: 32px 24px; text-align: center; color: var(--text-tertiary); font-size: 13px; }
-    .fixed-social { position: fixed; bottom: 0; right: 32px; z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-    .fixed-social a { color: var(--text-tertiary); transition: color 0.2s; }
-    .fixed-social a:hover { color: var(--text-primary); }
-    .fixed-social-line { width: 1px; height: 80px; background: var(--border-hover); }
-    @media (max-width: 768px) { .fixed-social { display: none; } }
-
-    /* ── Keyframes ── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes blink   { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    @keyframes scrollLine { 0%, 100% { opacity: 1; transform: scaleY(1); } 50% { opacity: 0.3; transform: scaleY(0.6); } }
-    .animate-reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .animate-reveal.visible { opacity: 1; transform: translateY(0); }
-  `}</style>
-);
 
 // ─── HOOKS ───────────────────────────────────────────────────────────────────
 function useTyped(strings) {
@@ -283,12 +80,12 @@ const frontendProjects = [
 // ─── NAVBAR ──────────────────────────────────────────────────────────────────
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const links = ["about-me", "experience", "projects", "contact"];
-  const labels = ["About", "Experience", "Projects", "Contact"];
+  const links = ["about-me", "main-projects", "experience", "projects", "contact"];
+  const labels = ["About", "Work", "Experience", "Projects", "Contact"];
   return (
     <>
       <nav className="nav-root">
-        <div className="nav-logo">Daniel<span>.</span>LA</div>
+        <div className="nav-logo">Daniel<span>-</span>LA</div>
         <ul className="nav-links">
           {links.map((to, i) => (
             <li key={to}>
@@ -384,11 +181,54 @@ const About = () => {
 // ─── EXPERIENCE ──────────────────────────────────────────────────────────────
 const Experience = () => {
   const jobs = [
-    { date: "Jan 2025 — May 2025", role: "Full Stack Developer", body: "Led end-to-end development with NestJS microservices and Spring Framework APIs. Integrated OpenAI agents, managed MySQL with Sequelize ORM, and deployed Docker containers on AWS via MobaXterm.", tags: ["NestJS", "Angular", "Java", "Spring", "MySQL", "Docker", "AWS", "OpenAI"] },
-    { date: "Jan 2024 — Jun 2024", role: "Backend Developer Jr", project: "Project: Citas", body: "Built REST and SOAP services in Java. Wrote JUnit5 unit tests, created sequence & use-case diagrams, optimised SQL queries, and managed concurrency with JPA on WebLogic / OracleDB.", tags: ["Java 8", "JPA", "JUnit5", "OracleDB", "WebLogic", "Jenkins", "SonarQube"] },
-    { date: "May 2023 — Sep 2023", role: "Java Microservices Developer", project: "Project: E-commerce", body: "Designed an event-driven microservices platform with API Gateway, Eureka, Circuit Breaker (Resilience4j), JWT security, OpenFeign communication, and monitoring via Grafana + Prometheus.", tags: ["Java 17", "Spring Cloud", "Docker", "Eureka", "JWT", "Grafana", "Prometheus"] },
-    { date: "Aug 2023", role: "MERN Stack Developer", project: "Project: Blog System", body: "Built a full blog platform with ExpressJS, MongoDB, ReactJS, Socket.IO real-time chat, JWT auth, Cloudinary image uploads, and deployed on AWS EC2.", tags: ["React", "Express", "MongoDB", "Socket.IO", "Redux", "AWS EC2", "Cloudinary"] },
-    { date: "May 2022 — Dec 2022", role: "JavaEE & GraphQL Developer", project: "Projects: Project Manager + CRM", body: "Task management system in JavaEE / JDBC on Apache Tomcat, and a GraphQL CRM API with Apollo Server, MongoDB, and JWT authentication.", tags: ["JavaEE", "JDBC", "JSP", "GraphQL", "Apollo", "MongoDB", "Mongoose"] },
+    {
+      date: "Sep 2025 — Present",
+      role: "Full Stack Developer",
+      project: "Project: AI Agents Platform",
+      body: "Building a full-scale SaaS ecosystem for AI agent management — visual agent builder with React Flow, real-time internal chat via WebSockets, CRM, calendar, kanban projects, file management, and multi-channel inbox. Frontend in Next.js 15 + Tailwind + Ant Design, backend in Go with PostgreSQL and raw queries via SQLX.",
+      tags: ["Next.js 15", "Go", "PostgreSQL", "WebSockets", "SQLX", "React Flow", "Tailwind CSS", "Ant Design"],
+    },
+    {
+      date: "Dec 2025 — Present",
+      role: "Full Stack Developer",
+      project: "Project: ShopModern v2 — E-commerce",
+      body: "Rebuilt the e-commerce platform with production-grade distributed systems. Added Stripe payment processing with webhooks, AWS S3 for image storage, AWS Cognito for identity management, Apache Kafka for async event-driven notifications, and an Angular 17 frontend with role-based UI for Sellers and Customers.",
+      tags: ["Spring Boot", "Angular 17", "Stripe", "Kafka", "AWS S3", "AWS Cognito", "PostgreSQL", "MongoDB", "Zipkin"],
+    },
+    {
+      date: "Jan 2025 — May 2025",
+      role: "Full Stack Developer",
+      body: "Led end-to-end development with NestJS microservices and Spring Framework APIs. Integrated OpenAI agents, managed MySQL with Sequelize ORM, and deployed Docker containers on AWS via MobaXterm.",
+      tags: ["NestJS", "Angular", "Java", "Spring", "MySQL", "Docker", "AWS", "OpenAI"],
+    },
+    {
+      date: "May 2023 — Sep 2023",
+      role: "Java Microservices Developer",
+      project: "Project: ShopModern v1 — E-commerce (legacy)",
+      body: "First version of the e-commerce platform — event-driven microservices with API Gateway, Eureka, Circuit Breaker (Resilience4j), JWT security, OpenFeign, and monitoring via Grafana + Prometheus. Current version (v2) extends this with Stripe payments, AWS S3/Cognito, Kafka, and an Angular 17 frontend.",
+      tags: ["Java 17", "Spring Cloud", "Docker", "Eureka", "JWT", "Grafana", "Prometheus"],
+    },
+    {
+      date: "Aug 2023",
+      role: "MERN Stack Developer",
+      project: "Project: Blog System",
+      body: "Built a full blog platform with ExpressJS, MongoDB, ReactJS, Socket.IO real-time chat, JWT auth, Cloudinary image uploads, and deployed on AWS EC2.",
+      tags: ["React", "Express", "MongoDB", "Socket.IO", "Redux", "AWS EC2", "Cloudinary"],
+    },
+    {
+      date: "Jan 2024 — Jun 2024",
+      role: "Backend Developer Jr",
+      project: "Project: Citas",
+      body: "Built REST and SOAP services in Java. Wrote JUnit5 unit tests, created sequence & use-case diagrams, optimised SQL queries, and managed concurrency with JPA on WebLogic / OracleDB.",
+      tags: ["Java 8", "JPA", "JUnit5", "OracleDB", "WebLogic", "Jenkins", "SonarQube"],
+    },
+    {
+      date: "May 2022 — Dec 2022",
+      role: "JavaEE & GraphQL Developer",
+      project: "Projects: Project Manager + CRM",
+      body: "Task management system in JavaEE / JDBC on Apache Tomcat, and a GraphQL CRM API with Apollo Server, MongoDB, and JWT authentication.",
+      tags: ["JavaEE", "JDBC", "JSP", "GraphQL", "Apollo", "MongoDB", "Mongoose"],
+    },
   ];
   const edu = [
     { date: "Aug 2018 — Dec 2023", title: "B.Sc. Computer Science Engineering", org: "Benemérita Universidad Autónoma de Puebla, MX" },
@@ -893,11 +733,26 @@ const Portfolio = () => {
   useReveal();
   return (
     <>
-      <GlobalStyles />
       <Navbar />
       <main>
         <Hero />
         <About />
+        <section id="main-projects" className="bg-[#0a0a0a] pt-20 pb-0">
+          <div className="max-w-[1100px] mx-auto px-6 lg:px-0">
+            <span className="block text-[11px] tracking-[2px] uppercase font-medium mb-3" style={{ color: "#2997ff" }}>
+              Main Projects
+            </span>
+            <h2 className="text-[clamp(28px,4vw,52px)] font-black tracking-[-2px] leading-[1.05] text-white mb-2">
+              Selected work
+            </h2>
+            <p className="text-[15px] text-white/40 font-light">
+              Full-scale systems built from scratch — architecture, backend, and frontend.
+            </p>
+          </div>
+        </section>
+        <AIAgentsProject />
+        <EcommerceProject />
+
         <Experience />
         <Sphere />
         <Projects />
