@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars, faClose, faServer, faDesktop, faCloud, faDatabase,
   faShield, faAward, faMailBulk, faPhone, faArrowRight,
-  faCode, faExternalLinkAlt, faFileArrowDown, faChevronDown, faEye
+  faCode, faExternalLinkAlt, faFileArrowDown, faChevronDown,faEye
 } from "@fortawesome/free-solid-svg-icons";
 import allIcons from "simple-icons";
 import { v4 } from "uuid";
@@ -296,16 +296,14 @@ const Hero = () => {
       <h1 className="hero-title">Luis Alberto<br /><span className="accent">Zacarias</span></h1>
       <div className="hero-typed">{typed}<span className="cursor">|</span></div>
       <p className="hero-subtitle">Computer Science graduate building high-performance backend systems, microservices, and cloud-native applications.</p>
+      <CVButton />
       <div className="hero-actions">
         <Link to="projects" spy smooth offset={-70} duration={600}>
           <button className="btn-primary">View Projects <FontAwesomeIcon icon={faArrowRight} style={{ fontSize: 14 }} /></button>
         </Link>
-        <div className="hidden md:block">
-          <Link to="contact" spy smooth offset={-70} duration={600}>
-            <button className="btn-ghost">Get in touch</button>
-          </Link>
-        </div>
-        <CVButton />
+        <Link to="contact hidden md:block" spy smooth offset={-70} duration={600}>
+          <button className="btn-ghost">Get in touch</button>
+        </Link>
       </div>
       <div className="hero-scroll"><span>scroll</span><div className="hero-scroll-line" /></div>
     </section>
