@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars, faClose, faServer, faDesktop, faCloud, faDatabase,
   faShield, faAward, faMailBulk, faPhone, faArrowRight,
-  faCode, faExternalLinkAlt
+  faCode, faExternalLinkAlt, faFileArrowDown, faChevronDown,faEye
 } from "@fortawesome/free-solid-svg-icons";
 import allIcons from "simple-icons";
 import { v4 } from "uuid";
@@ -13,6 +13,8 @@ import { projectsAPI } from "../helpers/projectsAPI";
 import FeaturedProjects from "./FeaturedProjects";
 import AIAgentsProject from "./AIAgentsProject";
 import EcommerceProject from "./EcommerceProject";
+import cvEN from "../assets/CV_EN.pdf";
+import cvES from "../assets/CV_ES.pdf";
 
 
 // ─── HOOKS ───────────────────────────────────────────────────────────────────
@@ -111,6 +113,178 @@ const Navbar = () => {
   );
 };
 
+// ─── CV DOWNLOAD BUTTON ──────────────────────────────────────────────────────
+const CVButton = () => {
+  const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(null);
+
+
+
+  return (
+    <div style={{ position: "relative", display: "inline-block" }}>
+      {/* botón principal */}
+      <button
+        onClick={() => setOpen(!open)}
+        onMouseEnter={() => setHovered("main")}
+        onMouseLeave={() => setHovered(null)}
+        className="btn-ghost"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          position: "relative",
+          overflow: "hidden",
+          transition: "all 0.3s ease",
+          background: open ? "rgba(41,151,255,0.1)" : "",
+          borderColor: open ? "#2997ff" : "",
+          color: open ? "#2997ff" : "",
+        }}
+      >
+        {/* shimmer animado */}
+        <span style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%)",
+          transform: hovered === "main" ? "translateX(100%)" : "translateX(-100%)",
+          transition: "transform 0.6s ease",
+          pointerEvents: "none",
+        }} />
+        <FontAwesomeIcon
+          icon={faFileArrowDown}
+          style={{
+            fontSize: 14,
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+            color: open ? "#2997ff" : "inherit",
+          }}
+        />
+        Download CV
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          style={{
+            fontSize: 10,
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+          }}
+        />
+      </button>
+
+      {/* dropdown */}
+      <div style={{
+        position: "absolute",
+        top: "calc(100% + 10px)",
+        left: "50%",
+        transform: open ? "translateX(-50%) translateY(0) scale(1)" : "translateX(-50%) translateY(-8px) scale(0.95)",
+        opacity: open ? 1 : 0,
+        pointerEvents: open ? "auto" : "none",
+        transition: "all 0.28s cubic-bezier(0.34,1.46,0.64,1)",
+        zIndex: 999,
+        minWidth: 240,
+      }}>
+        {/* flecha arriba */}
+        <div style={{
+          width: 10, height: 10,
+          background: "#1a1a1a",
+          border: "0.5px solid rgba(255,255,255,0.12)",
+          borderBottom: "none", borderRight: "none",
+          transform: "rotate(45deg)",
+          margin: "0 auto -5px",
+          position: "relative", zIndex: 1,
+        }} />
+
+        <div style={{
+          background: "#1a1a1a",
+          border: "0.5px solid rgba(255,255,255,0.12)",
+          borderRadius: 14,
+          overflow: "hidden",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+        }}>
+          {/* header */}
+          <div style={{
+            padding: "10px 16px",
+            borderBottom: "0.5px solid rgba(255,255,255,0.07)",
+            fontSize: 10, letterSpacing: 1.5,
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.3)",
+            fontWeight: 500,
+          }}>
+            Choose language
+          </div>
+
+          {/* opciones */}
+          {[
+            { lang: "English", flag: "🇺🇸", file: cvEN },
+            { lang: "Español", flag: "🇲🇽", file: cvES },
+          ].map(({ lang, flag, file }, i) => (
+            <div key={lang} style={{
+              borderBottom: i === 0 ? "0.5px solid rgba(255,255,255,0.06)" : "none",
+            }}>
+              <div style={{
+                display: "flex",
+                gap: 8,
+              }}>
+                <a
+
+                  href={`${file}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={() => setHovered(`view-${i}`)}
+                  onMouseLeave={() => setHovered(null)}
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    padding: "12px 16px",
+                    textDecoration: "none",
+                    transition: "background 0.2s",
+                    background: hovered === `view-${i}` ? "rgba(41,151,255,0.08)" : "transparent",
+                  }}
+                >
+                  <span style={{ fontSize: 20, lineHeight: 1 }}>{flag}</span>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{lang}</div>
+                    <div style={{
+                      fontSize: 10, color: "rgba(255,255,255,0.35)",
+                      display: "flex", alignItems: "center", gap: 4, marginTop: 1,
+                    }}>
+                      <FontAwesomeIcon icon={faEye} style={{ fontSize: 9 }} />
+                      View
+                    </div>
+                  </div>
+                </a>
+
+                {/* divisor vertical */}
+                <div style={{ width: "0.5px", background: "rgba(255,255,255,0.06)", margin: "8px 0" }} />
+
+                {/* descargar */}
+                <a
+                  href={`${file}`}
+                  download={lang === "English" ? "Luis_Alberto_Zacarias_Daniel_CV_EN.pdf" : "Luis_Alberto_Zacarias_Daniel_CV_ES.pdf"}
+                  onMouseEnter={() => setHovered(`dl-${i}`)}
+                  onMouseLeave={() => setHovered(null)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "12px 16px",
+                    textDecoration: "none",
+                    transition: "background 0.2s",
+                    background: hovered === `dl-${i}` ? "rgba(41,151,255,0.08)" : "transparent",
+                    color: hovered === `dl-${i}` ? "#2997ff" : "rgba(255,255,255,0.4)",
+                  }}
+                  title={`Download ${lang}`}
+                >
+                  <FontAwesomeIcon icon={faFileArrowDown} style={{ fontSize: 14, transition: "transform 0.3s", transform: hovered === `dl-${i}` ? "translateY(2px)" : "translateY(0)" }} />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // ─── HERO ────────────────────────────────────────────────────────────────────
 const Hero = () => {
   const typed = useTyped(["NodeJS Developer", "Java Developer", "Backend Engineer", "Microservices Architect"]);
@@ -129,6 +303,7 @@ const Hero = () => {
         <Link to="contact" spy smooth offset={-70} duration={600}>
           <button className="btn-ghost">Get in touch</button>
         </Link>
+        <CVButton />
       </div>
       <div className="hero-scroll"><span>scroll</span><div className="hero-scroll-line" /></div>
     </section>
@@ -271,7 +446,7 @@ const Experience = () => {
 // ─── SKILLS ──────────────────────────────────────────────────────────────────
 const Sphere = () => {
   const tagCanvasOptions = { imageScale: 2, initial: [0.1, -0.1], reverse: true, tooltip: "native", tooltipDelay: 0, wheelZoom: false };
-  const iconSlugs = ["java", "spring", "react", "html5", "nodedotjs", "express", "amazonaws", "postgresql", "docker", "git", "github", "visualstudiocode", "mysql", "mongodb", "linux", "typescript", "javascript", "css3", "kubernetes", "junit5"];
+  const iconSlugs = ["java", "spring", "react", "html5", "nodedotjs", "express", "amazonaws", "postgresql", "docker", "git", "github", "visualstudiocode", "mysql", "mongodb", "linux", "typescript", "javascript", "css3", "kubernetes", "junit5", "nextdotjs", "angular", "sonarqube", "jenkins"];
   const iconTags = iconSlugs.map(slug => ({ id: slug, simpleIcon: allIcons.Get(slug) }));
   return (
     <div className="skills-wrap section">
