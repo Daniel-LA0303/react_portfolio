@@ -1079,16 +1079,15 @@ body {
 
 /* ── Hero ── */
 .hero {
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 24px;
-  padding-top: var(--nav-h);
+  padding: 120px 24px 80px;
+  padding-top: calc(var(--nav-h) + 60px);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-bg {
